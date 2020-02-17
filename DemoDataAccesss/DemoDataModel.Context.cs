@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace apiCRUD
+namespace DemoDataAccesss
 {
     using System;
     using System.Data.Entity;
@@ -25,7 +25,7 @@ namespace apiCRUD
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Sinh_Vien> Sinh_Vien { get; set; }
         public virtual DbSet<Nguoi_Dung> Nguoi_Dung { get; set; }
+        public virtual DbSet<Sinh_Vien> Sinh_Vien { get; set; }
     }
 }

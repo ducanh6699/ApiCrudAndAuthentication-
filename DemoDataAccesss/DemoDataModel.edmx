@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Nguoi_Dung">
           <Key>
             <PropertyRef Name="MaND" />
@@ -29,19 +29,24 @@
           <EntitySet Name="Nguoi_Dung" EntityType="Self.Nguoi_Dung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sinh_Vien" EntityType="Self.Sinh_Vien" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Sinh_Vien" EntityType="DemoModel.Sinh_Vien" />
-          <EntitySet Name="Nguoi_Dung" EntityType="DemoModel.Nguoi_Dung" />
-        </EntityContainer>
+        <EntityType Name="Nguoi_Dung">
+          <Key>
+            <PropertyRef Name="MaND" />
+          </Key>
+          <Property Name="MaND" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Sinh_Vien">
           <Key>
             <PropertyRef Name="MSV" />
           </Key>
-          <Property Name="MSV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MSV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Lop" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NgaySinh" Type="DateTime" Precision="3" />
@@ -49,39 +54,35 @@
           <Property Name="Ho" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Nguoi_Dung">
-          <Key>
-            <PropertyRef Name="MaND" />
-          </Key>
-          <Property Name="MaND" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
+        <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Nguoi_Dung" EntityType="Self.Nguoi_Dung" />
+          <EntitySet Name="Sinh_Vien" EntityType="Self.Sinh_Vien" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities" >
-          <EntitySetMapping Name="Sinh_Vien">
-            <EntityTypeMapping TypeName="DemoModel.Sinh_Vien">
-              <MappingFragment StoreEntitySet="Sinh_Vien">
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="Ho" ColumnName="Ho" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="Lop" ColumnName="Lop" />
-                <ScalarProperty Name="MSV" ColumnName="MSV" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities">
           <EntitySetMapping Name="Nguoi_Dung">
             <EntityTypeMapping TypeName="DemoModel.Nguoi_Dung">
               <MappingFragment StoreEntitySet="Nguoi_Dung">
-                <ScalarProperty Name="MK" ColumnName="MK" />
-                <ScalarProperty Name="TK" ColumnName="TK" />
                 <ScalarProperty Name="MaND" ColumnName="MaND" />
+                <ScalarProperty Name="TK" ColumnName="TK" />
+                <ScalarProperty Name="MK" ColumnName="MK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sinh_Vien">
+            <EntityTypeMapping TypeName="DemoModel.Sinh_Vien">
+              <MappingFragment StoreEntitySet="Sinh_Vien">
+                <ScalarProperty Name="MSV" ColumnName="MSV" />
+                <ScalarProperty Name="Lop" ColumnName="Lop" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="Ho" ColumnName="Ho" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -99,7 +100,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

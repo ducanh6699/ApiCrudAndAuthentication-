@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace apiCRUD
+namespace DemoDataAccesss
 {
     using System;
     using System.Collections.Generic;
