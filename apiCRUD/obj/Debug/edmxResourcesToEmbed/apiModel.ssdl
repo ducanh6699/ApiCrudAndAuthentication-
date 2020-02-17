@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Sinh_Vien">
+    <Key>
+      <PropertyRef Name="MSV" />
+    </Key>
+    <Property Name="MSV" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lop" Type="varchar" MaxLength="50" />
+    <Property Name="HoTen" Type="varchar" MaxLength="100" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="GioiTinh" Type="nchar" MaxLength="10" />
+    <Property Name="Ho" Type="varchar" MaxLength="50" />
+    <Property Name="Ten" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="DemoModelStoreContainer">
+    <EntitySet Name="Sinh_Vien" EntityType="Self.Sinh_Vien" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
